@@ -1,0 +1,49 @@
+<h1>Book List</h1>
+<form>
+    <input type="text" id="search-box" onkeyup="getData()" class="form-control" placeholder="search by isbn/authors">
+</form>
+<table class="table table-striped mt-3" id="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>ISBN</th>
+            <th>Author</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody class="data-box">
+        {{#data}}
+        <tr class="{{author}} box" id="{{isbn}}">
+            <td>{{title}}</td>
+            <td id="{{isbn}}">{{isbn}}</td>
+            <td class="author">
+                {{#author}}
+                {{this}}
+                {{/author}}
+                
+            </td>
+            <td>{{desc}}</td>
+        </tr>
+        {{/data}}
+    </tbody>
+</table>
+<script>
+    function getData(){
+        $('.box').show();
+        data = $('#search-box').val();
+       
+       // console.log(ids)
+        if(data.length > 3){
+           $('#table tbody tr').each((index,element) => {
+       //   console..log(element)
+           if(element.id.includes(data) || element.className.includes(data)){
+            $('#'+element.id).show();
+           }else{
+            $('#'+element.id).hide();
+           }
+          })
+        }else{
+             $('.box').show();
+        }
+    }
+</script>

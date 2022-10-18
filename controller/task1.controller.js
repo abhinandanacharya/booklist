@@ -17,7 +17,7 @@ task1.getCSVData = async (req, res) => {
                 file = 'magazines.csv';
                 renderPath = 'magazine';
             } else {
-                res.render('notfound');
+               return  res.render('notfound');
             }
         } else {
             file = 'books.csv';
@@ -44,7 +44,7 @@ task1.getCSVData = async (req, res) => {
                         obj.desc = csvData[d][3];
                         resData.push(obj);
                     }
-                    console.log(resData);
+                   // console.log(resData);
                     res.render(renderPath, { data: resData });
                 })
                 .on('error', (CsvError) => {
